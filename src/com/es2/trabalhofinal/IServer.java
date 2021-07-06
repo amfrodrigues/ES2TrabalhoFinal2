@@ -1,0 +1,25 @@
+package com.es2.trabalhofinal;
+
+import java.util.List;
+
+public interface IServer {
+    boolean loginUtilizador(String nome, String password) throws ExceptionListaUtilizadoresVazia;
+
+    void adicionarUtilizador(IUtilizador utilizador) throws ExceptionUtilizadorJaUsado, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorPasswordNula;
+
+    void cancelarUtilizador(int indexUtilizador) throws ExceptionIndexUtilizadorInvalido, ExceptionListaUtilizadoresVazia;
+
+    void adicionarRepositorio(IRepositorioLivros repositorio) throws ExceptionRepositorioLivroNulo, ExceptionManagerRepositoriosLivrosComRepositorioJaExiste;
+
+    void adicionarEmprestimoLivro(String tituloLivro, int indexUtilizador, int diasEmprestimo, boolean termosAceites) throws ExceptionIndiceLivroEmprestadoInvalido, ExceptionIndiceRepositorioLivroInvalido, ExceptionListaRepositoriosLivrosVazia, ExceptionUtilizadorLivroJaEmprestado, ExceptionRepositorioLivrosIndiceLivroInvalido, ExceptionRepositorioLivrosListaLivrosVazia, ExceptionTermosResponsabilidadeNaoAceites, ExceptionEmprestimoLivroDuraçaoInvalida, ExceptionEmprestimoLivroNulo, ExceptionTituloLivroVazio, ExceptionLivroNaoExiste;
+
+    void extenderEmprestimoLivro(int indexUtilizador, int indexEmprestimoLivro) throws ExceptionIndexUtilizadorInvalido, ExceptionListaLivrosEmprestadosVazia, ExceptionUtilizadorIndexEmprestimoLivroInvalido, ExceptionEmprestimoLivroLimiteExtenderExcedido;
+
+    List<IEmprestimoLivro> getAllEmprestimosUtilizador(int indexUtilizador) throws ExceptionUtilizadorListaEmprestimosVazia, ExceptionIndexUtilizadorInvalido;
+
+    ILivro getLivroEmprestimoUtilizador(int indexUtilizador, int indexEmprestimoLivro) throws ExceptionListaLivrosEmprestadosVazia, ExceptionRepositorioLivrosIndiceLivroInvalido, ExceptionListaRepositoriosLivrosVazia, ExceptionRepositorioLivrosListaLivrosVazia, ExceptionUtilizadorIndexEmprestimoLivroInvalido, ExceptionIndiceRepositorioLivroInvalido, ExceptionIndexUtilizadorInvalido, ExceptionEmprestimoLivroDataEmprestimoExcedida;
+
+    void addLivro(ILivro livro) throws ExceptionLivroJaExiste, ExceptionListaRepositoriosLivrosVazia, ExceptionLivroNulo;
+
+
+}
