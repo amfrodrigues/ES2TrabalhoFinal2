@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestesLivro {
+class TestesLivro {
     IEditora editora;
 
 
@@ -20,10 +20,8 @@ public class TestesLivro {
     void setupAfterEach() {
         try {
             editora = new Editora("valido", "valido");
-        } catch (ExceptionTermoResponsabilidadeEditoraNulo exceptionTermoResponsabilidadeEditoraNulo) {
+        } catch (ExceptionTermoResponsabilidadeEditoraNulo | ExceptionNomeEditoraNulo exceptionTermoResponsabilidadeEditoraNulo) {
             exceptionTermoResponsabilidadeEditoraNulo.printStackTrace();
-        } catch (ExceptionNomeEditoraNulo exceptionNomeEditoraNulo) {
-            exceptionNomeEditoraNulo.printStackTrace();
         }
     }
 
@@ -33,37 +31,27 @@ public class TestesLivro {
 
     @Test
     void testLivroTituloNulo() {
-        assertThrows(ExceptionLivroTituloNulo.class, () -> {
-            ILivro livro = new Livro(null, "valido", editora, 1, "valido");
-        });
+        assertThrows(ExceptionLivroTituloNulo.class, () -> new Livro(null, "valido", editora, 1, "valido"));
     }
 
     @Test
     void testLivroAutorNulo() {
-        assertThrows(ExceptionLivroAutorNulo.class, () -> {
-            ILivro livro = new Livro("valido", null, editora, 1, "valido");
-        });
+        assertThrows(ExceptionLivroAutorNulo.class, () -> new Livro("valido", null, editora, 1, "valido"));
     }
 
     @Test
     void testLivroHashFicheiroNulo() {
-        assertThrows(ExceptionLivroHashFicheiroNulo.class, () -> {
-            ILivro livro = new Livro("valido", "valido", editora, 1, null);
-        });
+        assertThrows(ExceptionLivroHashFicheiroNulo.class, () -> new Livro("valido", "valido", editora, 1, null));
     }
 
     @Test
-    void testLivroTamanhoFicheiroNulo() {
-        assertThrows(ExceptionLivroTamanhoFicheiroInvalido.class, () -> {
-            ILivro livro = new Livro("valido", "vaido", editora, 0, "valido");
-        });
+    void testLivroTamanhoFicheiroInvalido() {
+        assertThrows(ExceptionLivroTamanhoFicheiroInvalido.class, () -> new Livro("valido", "valido", editora, 0, "valido"));
     }
 
     @Test
     void testLivroEditoraNulo() {
-        assertThrows(ExceptionLivroEditoraNulo.class, () -> {
-            ILivro livro = new Livro("valido", "valido", null, 1, "valido");
-        });
+        assertThrows(ExceptionLivroEditoraNulo.class, () -> new Livro("valido", "valido", null, 1, "valido"));
     }
 
     @Test

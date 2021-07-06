@@ -23,8 +23,8 @@ public class Server implements IServer {
     }
 
     @Override
-    public void adicionarUtilizador(IUtilizador utilizador) throws ExceptionUtilizadorJaUsado {
-        if (listaUtilizadores.contains(utilizador)) throw new ExceptionUtilizadorJaUsado();
+    public void adicionarUtilizador(IUtilizador utilizador) throws ExceptionUtilizadorJaExiste {
+        if (listaUtilizadores.contains(utilizador)) throw new ExceptionUtilizadorJaExiste();
         this.listaUtilizadores.add(utilizador);
     }
 

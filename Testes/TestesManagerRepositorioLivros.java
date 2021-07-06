@@ -35,8 +35,9 @@ class TestesManagerRepositorioLivros {
 
 
     @Test
-    void testManagerRepositorioLivrosAdicionarLivroComListaRepositorioLivrosVazia() {
-        assertThrows(ExceptionListaRepositoriosLivrosVazia.class, () -> managerRepositorioLivros.addLivro(null));
+    void testManagerRepositorioLivrosAdicionarLivroComListaRepositorioLivrosVazia() throws ExceptionNomeEditoraNulo, ExceptionTermoResponsabilidadeEditoraNulo, ExceptionLivroHashFicheiroNulo, ExceptionLivroAutorNulo, ExceptionLivroEditoraNulo, ExceptionLivroTituloNulo, ExceptionLivroTamanhoFicheiroInvalido {
+        ILivro livro = new Livro("a","b",new Editora("a","a"),1,"a");
+        assertThrows(ExceptionListaRepositoriosLivrosVazia.class, () -> managerRepositorioLivros.addLivro(livro));
     }
 
     @Test

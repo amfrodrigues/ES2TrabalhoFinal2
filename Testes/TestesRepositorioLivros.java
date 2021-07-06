@@ -33,7 +33,7 @@ class TestesRepositorioLivros {
     }
 
     @Test
-    void testRepositorioLivrosNullListaLivros() {
+    void testRepositorioLivrosComListaLivrosNula() {
         assertThrows(ExceptionRepositorioListaLivrosNulo.class, () -> new RepositorioLivros(null));
     }
 

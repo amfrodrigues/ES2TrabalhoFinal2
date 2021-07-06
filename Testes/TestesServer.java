@@ -34,10 +34,10 @@ class TestesServer {
     }
 
     @Test
-    void testServerAdicionarUtilizadorComUtilizadorJaExistente() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado {
+    void testServerAdicionarUtilizadorComUtilizadorJaExistente() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
-        assertThrows(ExceptionUtilizadorJaUsado.class, () -> server.adicionarUtilizador(utilizador1));
+        assertThrows(ExceptionUtilizadorJaExiste.class, () -> server.adicionarUtilizador(utilizador1));
     }
 
     @Test
@@ -52,7 +52,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerCancelarUtilizadorComIndiceInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado {
+    void testServerCancelarUtilizadorComIndiceInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertThrows(ExceptionIndexUtilizadorInvalido.class, () -> server.cancelarUtilizador(-1));
@@ -65,7 +65,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerGetAllEmprestimosUtilizadorComIndiceUtilizarInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado {
+    void testServerGetAllEmprestimosUtilizadorComIndiceUtilizadorInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertThrows(ExceptionIndexUtilizadorInvalido.class, () -> server.getAllEmprestimosUtilizador(-1));
@@ -73,7 +73,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerGetLivroEmprestimoUtilizador() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado {
+    void testServerGetLivroEmprestimoUtilizadorComIndiceUtilizadorInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertThrows(ExceptionIndexUtilizadorInvalido.class, () -> server.getLivroEmprestimoUtilizador(-1, 0));
@@ -81,7 +81,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerExtenderEmprestimoLivroComIndexUtilizadorInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado {
+    void testServerExtenderEmprestimoLivroComIndexUtilizadorInvalido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertThrows(ExceptionIndexUtilizadorInvalido.class, () -> server.extenderEmprestimoLivro(-1, 0));
@@ -90,7 +90,7 @@ class TestesServer {
 
     // testes de integraçao global
     @Test
-    void testServerAdicionarUtilizadorELoginUtilizadorValido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado, ExceptionListaUtilizadoresVazia {
+    void testServerAdicionarUtilizadorELoginUtilizadorValido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste, ExceptionListaUtilizadoresVazia {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertTrue(server.loginUtilizador("nome", "password"));
@@ -98,7 +98,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerCancelarUtilizador() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado, ExceptionListaUtilizadoresVazia, ExceptionIndexUtilizadorInvalido {
+    void testServerCancelarUtilizador() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste, ExceptionListaUtilizadoresVazia, ExceptionIndexUtilizadorInvalido {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
         assertTrue(server.loginUtilizador("nome", "password"));
@@ -107,7 +107,7 @@ class TestesServer {
     }
 
     @Test
-    void testServerAdicionarEmprestimoUtilizadorEExtenderEmprestimoEGetLivroEmprestimoValido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaUsado, ExceptionRepositorioLivroNulo, ExceptionManagerRepositoriosLivrosComRepositorioJaExiste, ExceptionNomeEditoraNulo, ExceptionTermoResponsabilidadeEditoraNulo, ExceptionLivroHashFicheiroNulo, ExceptionLivroAutorNulo, ExceptionLivroEditoraNulo, ExceptionLivroTituloNulo, ExceptionLivroTamanhoFicheiroInvalido, ExceptionLivroJaExiste, ExceptionListaRepositoriosLivrosVazia, ExceptionLivroNulo, ExceptionIndiceLivroEmprestadoInvalido, ExceptionUtilizadorLivroJaEmprestado, ExceptionRepositorioLivrosListaLivrosVazia, ExceptionIndiceRepositorioLivroInvalido, ExceptionRepositorioLivrosIndiceLivroInvalido, ExceptionTituloLivroVazio, ExceptionEmprestimoLivroNulo, ExceptionLivroNaoExiste, ExceptionTermosResponsabilidadeNaoAceites, ExceptionEmprestimoLivroDuraçaoInvalida, ExceptionIndexUtilizadorInvalido, ExceptionListaLivrosEmprestadosVazia, ExceptionEmprestimoLivroLimiteExtenderExcedido, ExceptionUtilizadorIndexEmprestimoLivroInvalido, ExceptionEmprestimoLivroDataEmprestimoExcedida {
+    void testServerAdicionarEmprestimoUtilizadorEExtenderEmprestimoEGetLivroEmprestimoValido() throws ExceptionUtilizadorPasswordNula, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorJaExiste, ExceptionRepositorioLivroNulo, ExceptionManagerRepositoriosLivrosComRepositorioJaExiste, ExceptionNomeEditoraNulo, ExceptionTermoResponsabilidadeEditoraNulo, ExceptionLivroHashFicheiroNulo, ExceptionLivroAutorNulo, ExceptionLivroEditoraNulo, ExceptionLivroTituloNulo, ExceptionLivroTamanhoFicheiroInvalido, ExceptionLivroJaExiste, ExceptionListaRepositoriosLivrosVazia, ExceptionLivroNulo, ExceptionIndiceLivroEmprestadoInvalido, ExceptionUtilizadorLivroJaEmprestado, ExceptionRepositorioLivrosListaLivrosVazia, ExceptionIndiceRepositorioLivroInvalido, ExceptionRepositorioLivrosIndiceLivroInvalido, ExceptionTituloLivroVazio, ExceptionEmprestimoLivroNulo, ExceptionLivroNaoExiste, ExceptionTermosResponsabilidadeNaoAceites, ExceptionEmprestimoLivroDuraçaoInvalida, ExceptionIndexUtilizadorInvalido, ExceptionListaLivrosEmprestadosVazia, ExceptionEmprestimoLivroLimiteExtenderExcedido, ExceptionUtilizadorIndexEmprestimoLivroInvalido, ExceptionEmprestimoLivroDataEmprestimoExcedida {
         IUtilizador utilizador1 = new Utilizador("nome", "password");
         server.adicionarUtilizador(utilizador1);
 

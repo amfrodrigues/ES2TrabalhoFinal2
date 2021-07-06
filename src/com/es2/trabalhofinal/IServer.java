@@ -5,7 +5,7 @@ import java.util.List;
 public interface IServer {
     boolean loginUtilizador(String nome, String password) throws ExceptionListaUtilizadoresVazia;
 
-    void adicionarUtilizador(IUtilizador utilizador) throws ExceptionUtilizadorJaUsado, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorPasswordNula;
+    void adicionarUtilizador(IUtilizador utilizador) throws ExceptionUtilizadorJaExiste, ExceptionUtilizadorNomeNulo, ExceptionUtilizadorPasswordNula;
 
     void cancelarUtilizador(int indexUtilizador) throws ExceptionIndexUtilizadorInvalido, ExceptionListaUtilizadoresVazia;
 

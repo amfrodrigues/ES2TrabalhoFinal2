@@ -47,9 +47,9 @@ class TestesEmprestimoLivro {
 
     @Test
     void testEmprestimoLivroValido() throws ExceptionIndiceLivroEmprestadoInvalido, ExceptionIndiceRepositorioLivroInvalido, ExceptionEmprestimoLivroDuraçaoInvalida {
-        IEmprestimoLivro emprestimoLivro = new EmprestimoLivro(2, 1, 1);
-        assertEquals(2, emprestimoLivro.getIndexLivroEmprestimo());
-        assertEquals(1, emprestimoLivro.getIndexRepositorioEmprestimo());
+        IEmprestimoLivro emprestimoLivro = new EmprestimoLivro(0, 0, 1);
+        assertEquals(0, emprestimoLivro.getIndexLivroEmprestimo());
+        assertEquals(0, emprestimoLivro.getIndexRepositorioEmprestimo());
         assertEquals(LocalDate.now().minusDays(4), emprestimoLivro.getDataInicialEmprestimo());
     }
 
